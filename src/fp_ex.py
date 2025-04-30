@@ -95,7 +95,7 @@ data_transform = transforms.Compose([
 ])
 
 # FV-USM 데이터셋 폴더 경로
-root_dir = r"dataset/Published_database_FV-USM_Dec2013/1st_session/extractedvein"
+root_dir = r"../dataset/Published_database_FV-USM_Dec2013/Published_database_FV-USM_Dec2013/1st_session/extractedvein"
 
 # 폴더 리스트 가져오기
 all_folders = [os.path.join(root_dir, d) for d in sorted(os.listdir(root_dir)) if os.path.isdir(os.path.join(root_dir, d))]
@@ -128,7 +128,7 @@ early_stopping_patience = 3
 best_loss = float('inf')
 patience_counter = 0
 
-for epoch in range(100):  # 최대 50 에폭
+for epoch in range(100):  # 최대 100 에폭
     running_loss = 0.0
     model.train()
     for img, label in tqdm(train_loader, desc=f"Epoch {epoch+1}"):
@@ -155,7 +155,7 @@ for epoch in range(100):  # 최대 50 에폭
 # Feature Extractor만 사용
 feature_extractor = model.feature_extractor
 # Feature Extractor 저장
-save_path = './finger_vein_feature_extractor.pth'
+save_path = 'finger_vein_feature_extractor.pth'
 torch.save(feature_extractor.state_dict(), save_path)
 print(f"Feature extractor saved at {save_path}")
 
